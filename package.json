@@ -1,19 +1,24 @@
 {
   "name": "grunt-grunticon-sass",
-  "description": "A mystical CSS icon solution. This is a fork from filamentgroup grunt-grunticon: this version is Sass powered, maintained by Sergi Meseguer aka zigotica",
-  "version": "0.1.6",
+  "description": "A mystical SCSS icon solution. This is a fork from filamentgroup grunt-grunticon: this version is Sass powered, maintained by Sergi Meseguer aka zigotica",
+  "version": "0.2.0",
   "homepage": "https://github.com/zigotica/grunticon",
   "author": {
     "name": "Scott Jehl",
     "email": "scott@filamentgroup.com",
     "url": "http://filamentgroup.com"
   },
-  "maintainers": [ 
+  "maintainers": [
     {
       "name": "Sergi Meseguer",
       "email": "zigotica@gmail.com",
       "url": "http://zigotica.com"
-    } 
+    },
+    {
+      "name": "Jerad Gallinger",
+      "email": "jerad@jeradgallinger.ca",
+      "url": "http://jeradgallinger.ca"
+    }
   ],
   "repository": {
     "type": "git",
@@ -36,7 +41,7 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "grunt": "~0.3.9"
+    "grunt": "~0.4.0"
   },
   "keywords": [
     "gruntplugin",
@@ -48,5 +53,8 @@
     "png",
     "datauri",
     "base64"
-  ]
+  ],
+  "devDependencies": {
+    "uglify-js": "~2.2.5"
+  }
 }
