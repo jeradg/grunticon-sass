@@ -44,12 +44,12 @@ module.exports = function( grunt, undefined ) {
     var previewHTMLsrc = config.files.preview;
 
     // text filename that will hold the original list of icons
-    var iconslistfile = grunt.config.iconslistfile || "icons.list.txt";
+    var iconslistfile = config.iconslistfile || "icons.list.txt";
 
     // scss filename that will be used to add our own selectors
     // this file will need to be created manually to avoid overwrite!
     // we list it here so we can add the require rules at beginning of the 3 scss files
-    var iconslistcss = grunt.config.iconslistcss || "icons.list.scss";
+    var iconslistscss = config.iconslistscss || "icons.list.scss";
 
     // SCSS filenames 
     var datasvgscss = config.datasvgscss || "icons.data.svg.scss";
@@ -78,8 +78,17 @@ module.exports = function( grunt, undefined ) {
     }
 
     // css class prefix
-    var cssprefix = config.cssprefix || "icon-";
-    
+    var cssprefix;
+    //If the user has set config.cssprefix to be an empty string, assign cssprefix to be an empty string. 
+    //Otherwise, assign cssprefix to be either config.cssprefix or the default value "icon-". Testing for
+    //an empty string is necessary because empty strings are falsy, but it should be possible for the
+    //user to choose not to have a prefix in their icon css classes, i.e., an empty string.
+    if ( config.cssprefix === "" ) {
+        cssprefix = "";
+    } else {
+        cssprefix = config.cssprefix || "icon-";
+    }
+
     // create the output directory
     grunt.file.mkdir( config.dest );
 
@@ -114,7 +123,7 @@ module.exports = function( grunt, undefined ) {
         cssprefix,
         cssbasepath,
         iconslistfile,
-        iconslistcss,
+        iconslistscss,
         datasvgcss,
         datapngcss,
         urlpngcss

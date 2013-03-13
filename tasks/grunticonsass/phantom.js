@@ -34,7 +34,16 @@ var fs = require( "fs" );
 var inputdir = phantom.args[0];
 var outputdir = phantom.args[1];
 var pngout =  phantom.args[8];
-var cssprefix = phantom.args[9];
+var cssprefix;
+//If in grunticonsass.js config.cssprefix is an empty string, when it passes the empty string to phantom.js 
+//as an argument in grunt.util.spawn, phantom.js receives phantom.args[9] as "/". The reason for this is
+//unknown. Until this is figured out, if phantom.args[9] === "/", assume that the user set cssprefix as an
+//empty string. (Actually setting cssprefix to be "/" would cause the resulting scss to be invalid anyway.)
+if ( phantom.args[9] === "/" ) {
+  cssprefix = "";
+} else {
+  cssprefix = phantom.args[9];
+}
 var files = fs.list( inputdir );
 var currfile = 0;
 var pngcssrules = [];
