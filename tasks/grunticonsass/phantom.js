@@ -36,10 +36,9 @@ var outputdir = phantom.args[1];
 var pngout =  phantom.args[8];
 var cssprefix;
 //If in grunticonsass.js config.cssprefix is an empty string, when it passes the empty string to phantom.js 
-//as an argument in grunt.util.spawn, phantom.js receives phantom.args[9] as "/". The reason for this is
-//unknown. Until this is figured out, if phantom.args[9] === "/", assume that the user set cssprefix as an
-//empty string. (Actually setting cssprefix to be "/" would cause the resulting scss to be invalid anyway.)
-if ( phantom.args[9] === "/" ) {
+//as an argument in grunt.util.spawn, phantom.js does not receive the argument. Thus, grunticonsass.js sends
+//phantom.js the string "empty-string-cssprefix", which we now turn back into an empty string.
+if ( phantom.args[9] === "empty-string-cssprefix" ) {
   cssprefix = "";
 } else {
   cssprefix = phantom.args[9];

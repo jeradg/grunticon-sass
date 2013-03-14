@@ -79,12 +79,13 @@ module.exports = function( grunt, undefined ) {
 
     // css class prefix
     var cssprefix;
-    //If the user has set config.cssprefix to be an empty string, assign cssprefix to be an empty string. 
+    //If the user has set config.cssprefix to be an empty string, assign cssprefix to be "empty-string-cssprefix". 
     //Otherwise, assign cssprefix to be either config.cssprefix or the default value "icon-". Testing for
     //an empty string is necessary because empty strings are falsy, but it should be possible for the
-    //user to choose not to have a prefix in their icon css classes, i.e., an empty string.
+    //user to choose not to have a prefix in their icon css classes, i.e., an empty string. As well, if grunticonsass.js
+    //passes cssprefix as an empty string to phantom.js, phantom.js deletes the argument.
     if ( config.cssprefix === "" ) {
-        cssprefix = "";
+        cssprefix = "empty-string-cssprefix";
     } else {
         cssprefix = config.cssprefix || "icon-";
     }
